@@ -39,16 +39,12 @@ if (Zeile1[0] != 0):
         Zeile2 = [i * Buffer1 for i in Zeile2]
 
         if ((Buffer_Zeile[0] < 0) and (Zeile2[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile2[0] > 0)):
-            while Counter <= 4:
-                Zeile2[Counter] -= Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile2[i] -= Buffer_Zeile[i]
 
         elif ((Buffer_Zeile[0] < 0) and (Zeile2[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile2[0] < 0)):
-            while Counter <= 4:
-                Zeile2[Counter] += Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile2[i] += Buffer_Zeile[i]
 
         else:
             Status = "Fehler"
@@ -63,16 +59,12 @@ if (Zeile1[0] != 0):
         Zeile3 = [i * Buffer1 for i in Zeile3]
 
         if ((Buffer_Zeile[0] < 0) and (Zeile3[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile3[0] > 0)):
-            while Counter <= 4:
-                Zeile3[Counter] -= Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile3[i] -= Buffer_Zeile[i]
 
         elif ((Buffer_Zeile[0] < 0) and (Zeile3[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile3[0] < 0)):
-            while Counter <= 4:
-                Zeile3[Counter] += Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile3[i] += Buffer_Zeile[i]
             
         else:
             Status = "Fehler"
@@ -87,16 +79,12 @@ if (Zeile1[0] != 0):
         Zeile4 = [i * Buffer1 for i in Zeile4]
 
         if ((Buffer_Zeile[0] < 0) and (Zeile4[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile4[0] > 0)):
-            while Counter <= 4:
-                Zeile4[Counter] -= Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile4[i] -= Buffer_Zeile[i]
             
         elif ((Buffer_Zeile[0] < 0) and (Zeile4[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile4[0] < 0)):
-            while Counter <= 4:
-                Zeile4[Counter] += Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile4[i] += Buffer_Zeile[i]
             
         else:
             Status = "Fehler"
@@ -114,16 +102,12 @@ if (Zeile2[1] != 0):
         Zeile3 = [i * Buffer1 for i in Zeile3]
 
         if ((Buffer_Zeile[1] < 0) and (Zeile3[1] < 0)) or ((Buffer_Zeile[1] > 0) and (Zeile3[1] > 0)):
-            while Counter <= 4:
-                Zeile3[Counter] -= Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile3[i] -= Buffer_Zeile[i]
 
         elif ((Buffer_Zeile[1] < 0) and (Zeile3[1] > 0)) or ((Buffer_Zeile[1] > 0) and (Zeile3[1] < 0)):
-            while Counter <= 4:
-                Zeile3[Counter] += Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile3[i] += Buffer_Zeile[i]
 
         else:
             Status = "Fehler"
@@ -138,16 +122,12 @@ if (Zeile2[1] != 0):
         Zeile4 = [i * Buffer1 for i in Zeile4]
 
         if ((Buffer_Zeile[1] < 0) and (Zeile4[1] < 0)) or ((Buffer_Zeile[1] > 0) and (Zeile4[1] > 0)):
-            while Counter <= 4:
-                Zeile4[Counter] -= Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile4[i] -= Buffer_Zeile[i]
 
         elif ((Buffer_Zeile[1] < 0) and (Zeile4[1] > 0)) or ((Buffer_Zeile[1] > 0) and (Zeile4[1] < 0)):
-            while Counter <= 4:
-                Zeile4[Counter] += Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile4[i] += Buffer_Zeile[i]
             
         else:
             Status = "Fehler"
@@ -166,16 +146,12 @@ if (Zeile3[2] != 0):
         Zeile4 = [i * Buffer1 for i in Zeile4]
 
         if ((Buffer_Zeile[2] < 0) and (Zeile4[2] < 0)) or ((Buffer_Zeile[2] > 0) and (Zeile4[2] > 0)):
-            while Counter <= 4:
+            for i in range(5):
                 Zeile4[Counter] -= Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
 
         elif ((Buffer_Zeile[2] < 0) and (Zeile4[2] > 0)) or ((Buffer_Zeile[2] > 0) and (Zeile4[2] < 0)):
-            while Counter <= 4:
-                Zeile4[Counter] += Buffer_Zeile[Counter]
-                Counter += 1
-            Counter = 0
+            for i in range(5):
+                Zeile4[i] += Buffer_Zeile[i]
 
         else:
             Status = "Fehler"
