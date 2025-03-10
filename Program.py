@@ -19,6 +19,7 @@ X3 = 0
 X4 = 0
 Null_Status = 0
 Fehler_Counter = 0
+Error = False
 
 ### Programm ###
 
@@ -26,15 +27,22 @@ while True:
     
     # Eingabe:
     
-    print("Gebe dein Lineares Gleichungssystem ein:")
-    Zeile1 = [float(input("A11 = ")), float(input("A12 = ")), float(input("A13 = ")), float(input("A14 = ")), float(input("A1A = "))]
-    Zeile2 = [float(input("A21 = ")), float(input("A22 = ")), float(input("A23 = ")), float(input("A24 = ")), float(input("A2A = "))]
-    Zeile3 = [float(input("A31 = ")), float(input("A32 = ")), float(input("A33 = ")), float(input("A34 = ")), float(input("A3A = "))]
-    Zeile4 = [float(input("A41 = ")), float(input("A42 = ")), float(input("A43 = ")), float(input("A44 = ")), float(input("A4A = "))]
-    
+    Error = False
+    Status = "OK"
+
+    try:
+        print("Gebe dein Lineares Gleichungssystem ein:")
+        Zeile1 = [float(input("A11 = ")), float(input("A12 = ")), float(input("A13 = ")), float(input("A14 = ")), float(input("A1A = "))]
+        Zeile2 = [float(input("A21 = ")), float(input("A22 = ")), float(input("A23 = ")), float(input("A24 = ")), float(input("A2A = "))]
+        Zeile3 = [float(input("A31 = ")), float(input("A32 = ")), float(input("A33 = ")), float(input("A34 = ")), float(input("A3A = "))]
+        Zeile4 = [float(input("A41 = ")), float(input("A42 = ")), float(input("A43 = ")), float(input("A44 = ")), float(input("A4A = "))]
+    except ValueError:
+        Error = True
+        Status = "Fehler"
+
     # Rechner:
     
-    while(Null_Status == 0):
+    while(Null_Status == 0 and Error == False):
     
         if (Zeile1[0] != 0):
         
@@ -121,7 +129,7 @@ while True:
     Null_Status = 0
     Fehler_Counter = 0
     
-    while (Null_Status == 0):
+    while (Null_Status == 0 and Error == False):
     
         if (Zeile2[1] != 0):
             Null_Status = 1
@@ -181,29 +189,31 @@ while True:
     Null_Status = 0
     Fehler_Counter = 0
     
-    if (Zeile3[2] != 0):
+    if (Error == False):
+
+        if (Zeile3[2] != 0): 
     
-        if (Zeile4[2] != 0):
-        
-            Buffer1 = Zeile3[2]
-            Buffer2 = Zeile4[2]
-            Buffer_Zeile = Zeile3
-            Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
-            Zeile4 = [i * Buffer1 for i in Zeile4]
+            if (Zeile4[2] != 0):
+            
+                Buffer1 = Zeile3[2]
+                Buffer2 = Zeile4[2]
+                Buffer_Zeile = Zeile3
+                Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+                Zeile4 = [i * Buffer1 for i in Zeile4]
+
+                if ((Buffer_Zeile[2] < 0) and (Zeile4[2] < 0)) or ((Buffer_Zeile[2] > 0) and (Zeile4[2] > 0)):
+                    for i in range(5):
+                        Zeile4[i] -= Buffer_Zeile[i]
+
+                elif ((Buffer_Zeile[2] < 0) and (Zeile4[2] > 0)) or ((Buffer_Zeile[2] > 0) and (Zeile4[2] < 0)):
+                    for i in range(5):
+                        Zeile4[i] += Buffer_Zeile[i]
+
+                else:
+                    Status = "Fehler"
     
-            if ((Buffer_Zeile[2] < 0) and (Zeile4[2] < 0)) or ((Buffer_Zeile[2] > 0) and (Zeile4[2] > 0)):
-                for i in range(5):
-                    Zeile4[i] -= Buffer_Zeile[i]
-    
-            elif ((Buffer_Zeile[2] < 0) and (Zeile4[2] > 0)) or ((Buffer_Zeile[2] > 0) and (Zeile4[2] < 0)):
-                for i in range(5):
-                    Zeile4[i] += Buffer_Zeile[i]
-    
-            else:
-                Status = "Fehler"
-    
-    else: 
-        Status = "Fehler"
+        else: 
+            Status = "Fehler"
     
     if (Status == "OK"):
         X4 = (Zeile4[4] / Zeile4[3])
@@ -212,17 +222,23 @@ while True:
         X1 = ((Zeile1[4] - (Zeile1[3] * X4) - (Zeile1[2] * X3) - (Zeile1[1]) * X2) / Zeile1[0])
     
     # Ausgabe:
+
+    if Error == False:
     
-    print("Dreiecksmatrix:")
-    print(Zeile1)
-    print(Zeile2)
-    print(Zeile3)
-    print(Zeile4)
-    
-    print("Status:", Status)
-    print("Dein Ergebnis lautet:")
-    print("X1 = ", X1)
-    print("X2 = ", X2)
-    print("X3 = ", X3)
-    print("X4 = ", X4)
+        print("Dreiecksmatrix:")
+        print(Zeile1)
+        print(Zeile2)
+        print(Zeile3)
+        print(Zeile4)
+
+        print("Status:", Status)
+        print("Dein Ergebnis lautet:")
+        print("X1 = ", X1)
+        print("X2 = ", X2)
+        print("X3 = ", X3)
+        print("X4 = ", X4)
+
+    else:
+        
+        print("Es gab einen Fehler, bitte gebe dein LGS erneut ein")
     
