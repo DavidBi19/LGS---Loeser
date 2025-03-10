@@ -183,12 +183,13 @@ if (Zeile3[2] != 0):
 else: 
     Status = "Fehler"
 
-# if (A31 == 0) and (A32 == 0) and (A21 == 0):
-#     X3 = (A3A / A33)
-#     X2 = ((A2A - (A23*X3)) / A22)
-#     X1 = ((A1A - (A13 * X3) - (A12 * X2)) / A11)
-# else:
-#     Status = "Fehler"
+if (Status == "OK"):
+    X4 = (Zeile4[4] / Zeile4[3])
+    X3 = ((Zeile3[4] - (Zeile3[3] * X4)) / Zeile3[2])
+    X2 = ((Zeile2[4] - (Zeile2[3] * X4) - (Zeile2[2] * X3)) / Zeile2[1])
+    X1 = ((Zeile1[4] - (Zeile1[3] * X4) - (Zeile1[2] * X3) - (Zeile1[1]) * X2) / Zeile1[0])
+else:
+    Status = "Fehler"
 
 # Ausgabe:
 
