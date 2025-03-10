@@ -7,7 +7,7 @@
 #####################################################################
 
 # Autoren:   David Binder; Niklas Dreher
-# Stand:     06.03.2025
+# Stand:     10.03.2025
 
 ### Variablen ###
 
@@ -31,14 +31,19 @@ while True:
     Status = "OK"
 
     try:
-        print("Gebe dein Lineares Gleichungssystem ein:")
+        print("Gebe dein Lineares Gleichungssystem im folgenden Format ein:")
+        print("A11 A12 A13 A14 | A1A")
+        print("A21 A22 A23 A24 | A2A")
+        print("A31 A32 A33 A34 | A3A")
+        print("A41 A42 A43 A44 | A4A")
+        
         Zeile1 = [float(input("A11 = ")), float(input("A12 = ")), float(input("A13 = ")), float(input("A14 = ")), float(input("A1A = "))]
         Zeile2 = [float(input("A21 = ")), float(input("A22 = ")), float(input("A23 = ")), float(input("A24 = ")), float(input("A2A = "))]
         Zeile3 = [float(input("A31 = ")), float(input("A32 = ")), float(input("A33 = ")), float(input("A34 = ")), float(input("A3A = "))]
         Zeile4 = [float(input("A41 = ")), float(input("A42 = ")), float(input("A43 = ")), float(input("A44 = ")), float(input("A4A = "))]
     except ValueError:
         Error = True
-        Status = "Fehler"
+        Status = "Eingabefehler"
 
     # Rechner:
     
@@ -64,10 +69,6 @@ while True:
                     for i in range(5):
                         Zeile2[i] += Buffer_Zeile[i]
     
-                else:
-                    Status = "Fehler"
-    
-    
             if (Zeile3[0] != 0):
             
                 Buffer1 = Zeile1[0]
@@ -84,10 +85,6 @@ while True:
                     for i in range(5):
                         Zeile3[i] += Buffer_Zeile[i]
     
-                else:
-                    Status = "Fehler"
-    
-    
             if (Zeile4[0] != 0):
             
                 Buffer1 = Zeile1[0]
@@ -103,9 +100,6 @@ while True:
                 elif ((Buffer_Zeile[0] < 0) and (Zeile4[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile4[0] < 0)):
                     for i in range(5):
                         Zeile4[i] += Buffer_Zeile[i]
-    
-                else:
-                    Status = "Fehler"
     
         else:
             if Fehler_Counter == 0:
@@ -124,7 +118,8 @@ while True:
                 Zeile4 = Buffer_Zeile
                 Fehler_Counter += 1
             else:
-                Status = "Fehler"
+                Status = "Nullspalte"
+                Null_Status = 1
     
     Null_Status = 0
     Fehler_Counter = 0
@@ -148,11 +143,7 @@ while True:
                 elif ((Buffer_Zeile[1] < 0) and (Zeile3[1] > 0)) or ((Buffer_Zeile[1] > 0) and (Zeile3[1] < 0)):
                     for i in range(5):
                         Zeile3[i] += Buffer_Zeile[i]
-    
-                else:
-                    Status = "Fehler"
-    
-    
+
             if (Zeile4[1] != 0):
             
                 Buffer1 = Zeile2[1]
@@ -169,9 +160,6 @@ while True:
                     for i in range(5):
                         Zeile4[i] += Buffer_Zeile[i]
     
-                else:
-                    Status = "Fehler"
-    
         else:
             if Fehler_Counter == 0:
                 Buffer_Zeile = Zeile2
@@ -184,7 +172,8 @@ while True:
                 Zeile4 = Buffer_Zeile
                 Fehler_Counter += 1
             else:
-                Status = "Fehler"
+                Status = "Nullspalte"
+                Null_Status = 1
     
     Null_Status = 0
     Fehler_Counter = 0
@@ -209,18 +198,20 @@ while True:
                     for i in range(5):
                         Zeile4[i] += Buffer_Zeile[i]
 
-                else:
-                    Status = "Fehler"
-    
         else: 
-            Status = "Fehler"
+            Buffer_Zeile = Zeile3
+            Zeile3 = Zeile4
+            Zeile4 = Buffer_Zeile
     
     if (Status == "OK"):
-        X4 = (Zeile4[4] / Zeile4[3])
-        X3 = ((Zeile3[4] - (Zeile3[3] * X4)) / Zeile3[2])
-        X2 = ((Zeile2[4] - (Zeile2[3] * X4) - (Zeile2[2] * X3)) / Zeile2[1])
-        X1 = ((Zeile1[4] - (Zeile1[3] * X4) - (Zeile1[2] * X3) - (Zeile1[1]) * X2) / Zeile1[0])
-    
+        try:
+            X4 = (Zeile4[4] / Zeile4[3])
+            X3 = ((Zeile3[4] - (Zeile3[3] * X4)) / Zeile3[2])
+            X2 = ((Zeile2[4] - (Zeile2[3] * X4) - (Zeile2[2] * X3)) / Zeile2[1])
+            X1 = ((Zeile1[4] - (Zeile1[3] * X4) - (Zeile1[2] * X3) - (Zeile1[1]) * X2) / Zeile1[0])
+        except ZeroDivisionError:
+            Status = "Nullzeile"
+
     # Ausgabe:
 
     if Error == False:
@@ -232,11 +223,14 @@ while True:
         print(Zeile4)
 
         print("Status:", Status)
-        print("Dein Ergebnis lautet:")
-        print("X1 = ", X1)
-        print("X2 = ", X2)
-        print("X3 = ", X3)
-        print("X4 = ", X4)
+
+        if Status == "OK":
+
+            print("Dein Ergebnis lautet:")
+            print("X1 = ", X1)
+            print("X2 = ", X2)
+            print("X3 = ", X3)
+            print("X4 = ", X4)
 
     else:
         
