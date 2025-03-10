@@ -17,7 +17,8 @@ X1 = 0
 X2 = 0
 X3 = 0
 X4 = 0
-Counter = 0
+Null_Status = 0
+Fehler_Counter = 0
 
 ### Programm ###
 
