@@ -12,115 +12,195 @@
 ### Variablen ###
 
 print("Gebe dein Lineares Gleichungssystem ein:")
-A11 = int(input("A11 =" ))
-A12 = int(input("A12 =" ))
-A13 = int(input("A13 =" ))
-A1A = int(input("A1A =" ))
-A21 = int(input("A21 =" ))
-A22 = int(input("A22 =" ))
-A23 = int(input("A23 =" ))
-A2A = int(input("A2A =" ))
-A31 = int(input("A31 =" ))
-A32 = int(input("A32 =" ))
-A33 = int(input("A33 =" ))
-A3A = int(input("A3A =" ))
-Buffer = 0
+Zeile1 = [float(input("A11 = ")), float(input("A12 = ")), float(input("A13 = ")), float(input("A14 = ")), float(input("A1A = "))]
+Zeile2 = [float(input("A21 = ")), float(input("A22 = ")), float(input("A23 = ")), float(input("A24 = ")), float(input("A2A = "))]
+Zeile3 = [float(input("A31 = ")), float(input("A32 = ")), float(input("A33 = ")), float(input("A34 = ")), float(input("A3A = "))]
+Zeile4 = [float(input("A41 = ")), float(input("A42 = ")), float(input("A34 = ")), float(input("A44 = ")), float(input("A4A = "))]
+Buffer_Zeile = [float(0), float(0), float(0), float(0), float(0)]
 Status = "OK"
+X1 = 0
+X2 = 0
+X3 = 0
+X4 = 0
+Counter = 0
 
 ### Programm ###
 
 # Rechner:
 
-if(A11 != 0) and (A21 != 0):
-    Buffer = A11
-    A11 *= A21
-    A12 *= A21
-    A13 *= A21
-    A1A *= A21
-    A21 *= Buffer
-    A22 *= Buffer
-    A23 *= Buffer
-    A2A *= Buffer
+if (Zeile1[0] != 0):
+        
+    if (Zeile2[0] != 0):
+
+        Buffer1 = Zeile1[0]
+        Buffer2 = Zeile2[0]
+        Buffer_Zeile = Zeile1
+        Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+        Zeile2 = [i * Buffer1 for i in Zeile2]
+
+        if ((Buffer_Zeile[0] < 0) and (Zeile2[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile2[0] > 0)):
+            while Counter <= 4:
+                Zeile2[Counter] -= Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+
+        elif ((Buffer_Zeile[0] < 0) and (Zeile2[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile2[0] < 0)):
+            while Counter <= 4:
+                Zeile2[Counter] += Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+
+        else:
+            Status = "Fehler"
+            
+        
+    if (Zeile3[0] != 0):
+
+        Buffer1 = Zeile1[0]
+        Buffer2 = Zeile3[0]
+        Buffer_Zeile = Zeile1
+        Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+        Zeile3 = [i * Buffer1 for i in Zeile3]
+
+        if ((Buffer_Zeile[0] < 0) and (Zeile3[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile3[0] > 0)):
+            while Counter <= 4:
+                Zeile3[Counter] -= Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+
+        elif ((Buffer_Zeile[0] < 0) and (Zeile3[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile3[0] < 0)):
+            while Counter <= 4:
+                Zeile3[Counter] += Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+            
+        else:
+            Status = "Fehler"
+
+        
+    if (Zeile4[0] != 0):
+
+        Buffer1 = Zeile1[0]
+        Buffer2 = Zeile4[0]
+        Buffer_Zeile = Zeile1
+        Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+        Zeile4 = [i * Buffer1 for i in Zeile4]
+
+        if ((Buffer_Zeile[0] < 0) and (Zeile4[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile4[0] > 0)):
+            while Counter <= 4:
+                Zeile4[Counter] -= Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+            
+        elif ((Buffer_Zeile[0] < 0) and (Zeile4[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile4[0] < 0)):
+            while Counter <= 4:
+                Zeile4[Counter] += Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+            
+        else:
+            Status = "Fehler"
 else:
+    Status = "Fehler" 
+
+if (Zeile2[1] != 0):
+        
+    if (Zeile3[1] != 0):
+
+        Buffer1 = Zeile2[1]
+        Buffer2 = Zeile3[1]
+        Buffer_Zeile = Zeile2
+        Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+        Zeile3 = [i * Buffer1 for i in Zeile3]
+
+        if ((Buffer_Zeile[1] < 0) and (Zeile3[1] < 0)) or ((Buffer_Zeile[1] > 0) and (Zeile3[1] > 0)):
+            while Counter <= 4:
+                Zeile3[Counter] -= Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+
+        elif ((Buffer_Zeile[1] < 0) and (Zeile3[1] > 0)) or ((Buffer_Zeile[1] > 0) and (Zeile3[1] < 0)):
+            while Counter <= 4:
+                Zeile3[Counter] += Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+
+        else:
+            Status = "Fehler"
+            
+        
+    if (Zeile4[1] != 0):
+
+        Buffer1 = Zeile2[1]
+        Buffer2 = Zeile4[1]
+        Buffer_Zeile = Zeile2
+        Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+        Zeile4 = [i * Buffer1 for i in Zeile4]
+
+        if ((Buffer_Zeile[1] < 0) and (Zeile4[1] < 0)) or ((Buffer_Zeile[1] > 0) and (Zeile4[1] > 0)):
+            while Counter <= 4:
+                Zeile4[Counter] -= Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+
+        elif ((Buffer_Zeile[1] < 0) and (Zeile4[1] > 0)) or ((Buffer_Zeile[1] > 0) and (Zeile4[1] < 0)):
+            while Counter <= 4:
+                Zeile4[Counter] += Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+            
+        else:
+            Status = "Fehler"
+
+else: 
     Status = "Fehler"
 
-if((A11 > 0) and (A21 > 0)) or ((A11 < 0) and (A21 < 0)):
-    A21 -= A11
-    A22 -= A12
-    A23 -= A13
-    A2A -= A1A
-elif((A11 > 0) and (A21 < 0)) or ((A11 < 0) and (A21 > 0)):
-    A21 += A11
-    A22 += A12
-    A23 += A13
-    A2A += A1A
-else:
+if (Zeile3[2] != 0):
+
+    if (Zeile4[2] != 0):
+
+        Buffer1 = Zeile3[2]
+        Buffer2 = Zeile4[2]
+        Buffer_Zeile = Zeile3
+        Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+        Zeile4 = [i * Buffer1 for i in Zeile4]
+
+        if ((Buffer_Zeile[2] < 0) and (Zeile4[2] < 0)) or ((Buffer_Zeile[2] > 0) and (Zeile4[2] > 0)):
+            while Counter <= 4:
+                Zeile4[Counter] -= Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+
+        elif ((Buffer_Zeile[2] < 0) and (Zeile4[2] > 0)) or ((Buffer_Zeile[2] > 0) and (Zeile4[2] < 0)):
+            while Counter <= 4:
+                Zeile4[Counter] += Buffer_Zeile[Counter]
+                Counter += 1
+            Counter = 0
+
+        else:
+            Status = "Fehler"
+
+else: 
     Status = "Fehler"
 
-if(A11 != 0) and (A31 != 0):
-    Buffer = A11
-    A11 *= A31
-    A12 *= A31
-    A13 *= A31
-    A1A *= A31
-    A31 *= Buffer
-    A32 *= Buffer
-    A33 *= Buffer
-    A3A *= Buffer
-else:
-    Status = "Fehler"
-
-if((A11 > 0) and (A31 > 0)) or ((A11 < 0) and (A31 < 0)):
-    A31 -= A11
-    A32 -= A12
-    A33 -= A13
-    A3A -= A1A
-elif((A11 > 0) and (A31 < 0)) or ((A11 < 0) and (A31 > 0)):
-    A31 += A11
-    A32 += A12
-    A33 += A13
-    A3A += A1A
-else:
-    Status = "Fehler"
-
-if(A22 != 0) and (A32 != 0):
-    Buffer = A22
-    A22 *= A32
-    A23 *= A32
-    A2A *= A32
-    A32 *= Buffer
-    A33 *= Buffer
-    A3A *= Buffer
-else:
-    Status = "Fehler"
-
-if((A22 > 0) and (A32 > 0)) or ((A22 < 0) and (A32 < 0)):
-    A32 -= A22
-    A33 -= A23
-    A3A -= A2A
-elif((A22 > 0) and (A32 < 0)) or ((A22 < 0) and (A32 > 0)):
-    A32 += A22
-    A33 += A23
-    A3A += A2A
-else:
-    Status = "Fehler"
-
-if (A31 == 0) and (A32 == 0) and (A21 == 0):
-    X3 = (A3A / A33)
-    X2 = ((A2A - (A23*X3)) / A22)
-    X1 = ((A1A - (A13 * X3) - (A12 * X2)) / A11)
-else:
-    Status = "Fehler"
+# if (A31 == 0) and (A32 == 0) and (A21 == 0):
+#     X3 = (A3A / A33)
+#     X2 = ((A2A - (A23*X3)) / A22)
+#     X1 = ((A1A - (A13 * X3) - (A12 * X2)) / A11)
+# else:
+#     Status = "Fehler"
 
 # Ausgabe:
 
 print("Dreiecksmatrix:")
-print(A11, A12, A13, "|", A1A)
-print(A21, A22, A23, "|", A2A)
-print(A31, A32, A33, "|", A3A)
+print(Zeile1)
+print(Zeile2)
+print(Zeile3)
+print(Zeile4)
 
 print("Status:", Status)
 print("Dein Ergebnis lautet:")
 print("X1 = ", X1)
 print("X2 = ", X2)
 print("X3 = ", X3)
+print("X4 = ", X4)
