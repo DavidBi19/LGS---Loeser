@@ -14,7 +14,7 @@
 Buffer_Zeile = [float(0), float(0), float(0), float(0), float(0)]
 Status = "OK"
 Array_Rang = 0
-Null_Status = 0
+Null_Status = False
 Fehler_Counter = 0
 Error = False
 Buffer_Loesung = float(0)
@@ -28,29 +28,31 @@ while True:
     Error = False
     Status = "OK"
 
-    if (Error == False):
+    try:
 
-        try:
+        Array_Rang = int(input("Wie viele Variablen hat dein LGS?"))
 
-            Array_Rang = int(input("Wie viele Variablen hat dein LGS?"))
+    except ValueError:
 
-        except ValueError:
-
-            Error = True
-            Status = "Eingabefehler"
+        Error = True
+        Status = "Eingabefehler"
 
     LGS = [[0]]
 
     for i in range(Array_Rang - 1):
+
         LGS.append([0])
 
     for i in range(Array_Rang):
+
         for a in range(Array_Rang):
+
             LGS[i].append(0)
 
     Loesung = [float(0)]
 
     for i in range(Array_Rang - 1):
+
         Loesung.append(float(0))
 
     if (Error == False):
@@ -63,7 +65,14 @@ while True:
 
                 for a in range((Array_Rang + 1)):
 
-                    print("Zeile", i + 1 ,", Variable", a + 1, ":")
+                    if(a != Array_Rang):
+
+                        print("Zeile", i + 1,", Variable", a + 1, ":")
+
+                    else:
+
+                        print("Zeile", i + 1, ", Lösung :")
+                    
                     LGS[i][a] = float(input())
 
         except ValueError:
@@ -71,35 +80,57 @@ while True:
                 Error = True
                 Status = "Eingabefehler"
 
+    print("\nHier ist dein eingegebenes LGS: \n")
+
     for Zeilen in LGS:
+
         print(Zeilen)
 
-    for Variablen in Loesung:
-        print(Variablen)
+    print("\n")
 
     ### Rechner:
     
-    for a in range(0, Array_Rang):
+    for a in range(Array_Rang):
 
-        if (LGS[a][a] != 0):
+        if (LGS[a][a] == 0):
 
-            for b in range(a, Array_Rang - 1):
+            try:
 
-                if (LGS[b + 1][a] != 0):
+                for c in range(1, 1 + Array_Rang - a):
 
-                    Buffer1 = LGS[a][a]
-                    Buffer2 = LGS[b + 1][a]
-                    Buffer_Zeile = LGS[a]
-                    Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
-                    LGS[b + 1] = [i * Buffer1 for i in LGS[b + 1]]
+                    if (LGS[a][a] == 0):
 
-                    if ((Buffer_Zeile[a] < 0) and (LGS[b + 1][a] < 0)) or ((Buffer_Zeile[a] > 0) and (LGS[b + 1][a] > 0)):
-                        for i in range(Array_Rang + 1):
-                            LGS[b + 1][i] -= Buffer_Zeile[i]
+                        Buffer_Zeile = LGS[a]
+                        LGS[a] = LGS[a + c]
+                        LGS[a + c] = Buffer_Zeile 
+
+            except IndexError:
+
+                Error = True
+                Status = "Nullspalte"
+                break
     
-                    elif ((Buffer_Zeile[a] < 0) and (LGS[b + 1][a] > 0)) or ((Buffer_Zeile[a] > 0) and (LGS[b + 1][a] < 0)):
-                        for i in range(Array_Rang + 1):
-                            LGS[b + 1][i] += Buffer_Zeile[i]
+        for b in range(a, Array_Rang - 1):
+
+            if (LGS[b + 1][a] != 0):
+
+                Buffer1 = LGS[a][a]
+                Buffer2 = LGS[b + 1][a]
+                Buffer_Zeile = LGS[a]
+                Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+                LGS[b + 1] = [i * Buffer1 for i in LGS[b + 1]]
+
+                if ((Buffer_Zeile[a] < 0) and (LGS[b + 1][a] < 0)) or ((Buffer_Zeile[a] > 0) and (LGS[b + 1][a] > 0)):
+
+                    for i in range(Array_Rang + 1):
+
+                        LGS[b + 1][i] -= Buffer_Zeile[i]
+
+                elif ((Buffer_Zeile[a] < 0) and (LGS[b + 1][a] > 0)) or ((Buffer_Zeile[a] > 0) and (LGS[b + 1][a] < 0)):
+
+                    for i in range(Array_Rang + 1):
+
+                        LGS[b + 1][i] += Buffer_Zeile[i]
 
     if (Error == False):
 
@@ -116,6 +147,7 @@ while True:
                 Loesung[i] = Buffer_Loesung / LGS[i][i]
 
         except ZeroDivisionError:
+
             Error = True
             Status = "Nullzeile"
 
@@ -124,7 +156,9 @@ while True:
     if (Error == False):
     
         print("Dreiecksmatrix: \n")
+
         for Zeilen in LGS:
+
             print(Zeilen)
 
         print("Status:", Status, "\n")
@@ -140,4 +174,5 @@ while True:
     else:
         
         print("Es gab folgenden Fehler:", Status, "\nBitte gebe dein LGS erneut ein \n")
-    
+
+### Programm Ende ###    
