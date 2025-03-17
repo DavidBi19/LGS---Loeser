@@ -45,139 +45,153 @@ while True:
         Error = True
         Status = "Eingabefehler"
 
-    # Rechner:
-    
-    while(Null_Status == 0 and Error == False):
-    
-        if (Zeile1[0] != 0):
-        
-            Null_Status = 1
-    
-            if (Zeile2[0] != 0):
-            
-                Buffer1 = Zeile1[0]
-                Buffer2 = Zeile2[0]
-                Buffer_Zeile = Zeile1
-                Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
-                Zeile2 = [i * Buffer1 for i in Zeile2]
-    
-                if ((Buffer_Zeile[0] < 0) and (Zeile2[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile2[0] > 0)):
-                    for i in range(5):
-                        Zeile2[i] -= Buffer_Zeile[i]
-    
-                elif ((Buffer_Zeile[0] < 0) and (Zeile2[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile2[0] < 0)):
-                    for i in range(5):
-                        Zeile2[i] += Buffer_Zeile[i]
-    
-            if (Zeile3[0] != 0):
-            
-                Buffer1 = Zeile1[0]
-                Buffer2 = Zeile3[0]
-                Buffer_Zeile = Zeile1
-                Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
-                Zeile3 = [i * Buffer1 for i in Zeile3]
-    
-                if ((Buffer_Zeile[0] < 0) and (Zeile3[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile3[0] > 0)):
-                    for i in range(5):
-                        Zeile3[i] -= Buffer_Zeile[i]
-    
-                elif ((Buffer_Zeile[0] < 0) and (Zeile3[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile3[0] < 0)):
-                    for i in range(5):
-                        Zeile3[i] += Buffer_Zeile[i]
-    
-            if (Zeile4[0] != 0):
-            
-                Buffer1 = Zeile1[0]
-                Buffer2 = Zeile4[0]
-                Buffer_Zeile = Zeile1
-                Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
-                Zeile4 = [i * Buffer1 for i in Zeile4]
-    
-                if ((Buffer_Zeile[0] < 0) and (Zeile4[0] < 0)) or ((Buffer_Zeile[0] > 0) and (Zeile4[0] > 0)):
-                    for i in range(5):
-                        Zeile4[i] -= Buffer_Zeile[i]
-    
-                elif ((Buffer_Zeile[0] < 0) and (Zeile4[0] > 0)) or ((Buffer_Zeile[0] > 0) and (Zeile4[0] < 0)):
-                    for i in range(5):
-                        Zeile4[i] += Buffer_Zeile[i]
-    
-        else:
-            if Fehler_Counter == 0:
-                Buffer_Zeile = Zeile1
-                Zeile1 = Zeile2
-                Zeile2 = Buffer_Zeile
-                Fehler_Counter += 1
-            elif Fehler_Counter == 1:
-                Buffer_Zeile = Zeile1
-                Zeile1 = Zeile3
-                Zeile3 = Buffer_Zeile
-                Fehler_Counter += 1
-            elif Fehler_Counter == 2:
-                Buffer_Zeile = Zeile1
-                Zeile1 = Zeile4
-                Zeile4 = Buffer_Zeile
-                Fehler_Counter += 1
-            else:
-                Status = "Nullspalte"
-                Null_Status = 1
-    
-    Null_Status = 0
-    Fehler_Counter = 0
-    
-    while (Null_Status == 0 and Error == False):
-    
-        if (Zeile2[1] != 0):
-            Null_Status = 1
-            if (Zeile3[1] != 0):
-            
-                Buffer1 = Zeile2[1]
-                Buffer2 = Zeile3[1]
-                Buffer_Zeile = Zeile2
-                Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
-                Zeile3 = [i * Buffer1 for i in Zeile3]
-    
-                if ((Buffer_Zeile[1] < 0) and (Zeile3[1] < 0)) or ((Buffer_Zeile[1] > 0) and (Zeile3[1] > 0)):
-                    for i in range(5):
-                        Zeile3[i] -= Buffer_Zeile[i]
-    
-                elif ((Buffer_Zeile[1] < 0) and (Zeile3[1] > 0)) or ((Buffer_Zeile[1] > 0) and (Zeile3[1] < 0)):
-                    for i in range(5):
-                        Zeile3[i] += Buffer_Zeile[i]
+    # LGS-Liste, Lösungs-Liste und Variablen-Namen-Liste an Variablen-Anzahl anpassen:
 
-            if (Zeile4[1] != 0):
-            
-                Buffer1 = Zeile2[1]
-                Buffer2 = Zeile4[1]
-                Buffer_Zeile = Zeile2
-                Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
-                Zeile4 = [i * Buffer1 for i in Zeile4]
+    LGS = [[0]]
+
+    for i in range(Array_Rang - 1):
+
+        LGS.append([0])
+
+    for i in range(Array_Rang):
+
+        for a in range(Array_Rang):
+
+            LGS[i].append(0)
+
+    Loesung = [float(0)]
+
+    for i in range(Array_Rang - 1):
+
+        Loesung.append(float(0))
+
+    Variablen = ["X"]
+
+    for i in range(Array_Rang):
+
+        Variablen.append("X")
+
+    if (Error == False):
+
+        # Eingabe der Variablen-Namen:
+
+        print("Gebe hier deine Variablen-Namen ein: \n")
+
+        try:
+
+            for i in range(Array_Rang):
+
+                print(f"Variable {i + 1}:")
+                Variablen[i] = str(input())
+
+        except ValueError:
+
+            Error = True
+            Status = "Eingabefehler"
+
+        Variablen[Array_Rang] = "Lösung"
+
+        # Eingabe der Werte:
+
+        print("\nGebe hier deine Werte ein: \n")
+
+        try:
+
+            for i in range(Array_Rang):
+
+                for a in range((Array_Rang + 1)):
+
+                    print(f"Zeile {i + 1}, {Variablen[a]}:")
+                    
+                    LGS[i][a] = float(input())
+
+        except ValueError:
+
+            Error = True
+            Status = "Eingabefehler"
+
+    # Überprüfung der eingegebenen Werte:
+
+    if(Error == False):
+
+        print("\nHier ist dein eingegebenes LGS: \n")
+
+        for Zeilen in LGS:
+
+            print(Zeilen)
+
+        LGS_korrektur = str(input("\nIst das LGS korrekt eingegeben? (Ja/Nein): "))
+
+        if(LGS_korrektur != "Ja"):
+
+            Error = True
+            Status = "Eingabefehler"
+
+    print("\n")
+
+    ### Rechner:
+
+    # Berechnung der Dreiecksmatrix vom Format:
+    # (X, X, X | Lösung)
+    # (0, X, X | Lösung)
+    # (0, 0, X | Lösung)
+
+    if(Error == False):
     
-                if ((Buffer_Zeile[1] < 0) and (Zeile4[1] < 0)) or ((Buffer_Zeile[1] > 0) and (Zeile4[1] > 0)):
-                    for i in range(5):
-                        Zeile4[i] -= Buffer_Zeile[i]
-    
-                elif ((Buffer_Zeile[1] < 0) and (Zeile4[1] > 0)) or ((Buffer_Zeile[1] > 0) and (Zeile4[1] < 0)):
-                    for i in range(5):
-                        Zeile4[i] += Buffer_Zeile[i]
-    
-        else:
-            if Fehler_Counter == 0:
-                Buffer_Zeile = Zeile2
-                Zeile2 = Zeile3
-                Zeile3 = Buffer_Zeile
-                Fehler_Counter += 1
-            elif Fehler_Counter == 1:
-                Buffer_Zeile = Zeile2
-                Zeile2 = Zeile4
-                Zeile4 = Buffer_Zeile
-                Fehler_Counter += 1
-            else:
-                Status = "Nullspalte"
-                Null_Status = 1
-    
-    Null_Status = 0
-    Fehler_Counter = 0
-    
+        for a in range(Array_Rang):
+
+            # Vertauschung der Zeilen bei Null im ersten Faktor:
+            # (0, X, X | Lösung)
+            # (X, X, X | Lösung)
+            # (X, X, X | Lösung)
+
+            if (LGS[a][a] == 0):
+
+                try:
+
+                    for c in range(1, 1 + Array_Rang - a):
+
+                        if (LGS[a][a] == 0):
+
+                            Buffer_Zeile = LGS[a]
+                            LGS[a] = LGS[a + c]
+                            LGS[a + c] = Buffer_Zeile 
+
+                except IndexError:
+
+                    Error = True
+                    Status = "Nullspalte"
+                    break
+
+            # Verechnung jeweils zweier Zeilen um Null in der zweiten Zeile, die verrechnet wird, zu bekommen:
+            # (X, X, X | Lösung)
+            # (0, X, X | Lösung)
+            # (X, X, X | Lösung) usw.
+                
+            for b in range(a, Array_Rang - 1):
+
+                if (LGS[b + 1][a] != 0):
+
+                    Buffer1 = LGS[a][a]
+                    Buffer2 = LGS[b + 1][a]
+                    Buffer_Zeile = LGS[a]
+                    Buffer_Zeile = [i * Buffer2 for i in Buffer_Zeile]
+                    LGS[b + 1] = [i * Buffer1 for i in LGS[b + 1]]
+
+                    if ((Buffer_Zeile[a] < 0) and (LGS[b + 1][a] < 0)) or ((Buffer_Zeile[a] > 0) and (LGS[b + 1][a] > 0)):
+
+                        for i in range(Array_Rang + 1):
+
+                            LGS[b + 1][i] -= Buffer_Zeile[i]
+
+                    elif ((Buffer_Zeile[a] < 0) and (LGS[b + 1][a] > 0)) or ((Buffer_Zeile[a] > 0) and (LGS[b + 1][a] < 0)):
+
+                        for i in range(Array_Rang + 1):
+
+                            LGS[b + 1][i] += Buffer_Zeile[i]
+
+    # Berechnung der Lösung der Variablen:
+
     if (Error == False):
 
         if (Zeile3[2] != 0): 
