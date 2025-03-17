@@ -17,6 +17,11 @@ Array_Rang = 0
 Error = False
 Buffer_Loesung = float(0)
 LGS_korrektur = "Ja"
+Korrektur = False
+Korrektur_Zeile = 0
+Korrektur_Variable = "X"
+Korrektur_Variable_Zahl = 0
+Korrektur_Error = False
 
 ### Programm ###
 
@@ -24,6 +29,7 @@ while True:
     
     ### Eingabe:
     
+    Korrektur = False
     Error = False
     Status = "OK"
 
@@ -107,19 +113,59 @@ while True:
 
     if(Error == False):
 
-        print("\nHier ist dein eingegebenes LGS: \n")
+        while((Korrektur == False) and (Error == False)):
 
-        for Zeilen in LGS:
+            Korrektur_Error = False
 
-            print(Zeilen)
+            print("\nHier ist dein eingegebenes LGS: \n")
 
-        LGS_korrektur = str(input("\nIst das LGS korrekt eingegeben? (Ja/Nein): "))
+            for Zeilen in LGS:
 
-        if(LGS_korrektur != "Ja"):
+                print(Zeilen)
 
-            Error = True
-            Status = "Eingabefehler"
+            LGS_korrektur = str(input("\nIst das LGS korrekt eingegeben? (Ja/Nein): "))
 
+            if(LGS_korrektur == "Nein"):
+
+                try:
+
+                    print("Wo liegt der Fehler? \n")
+                    Korrektur_Zeile = int(input("In Zeile: ")) - 1
+                    Korrektur_Variable = str(input('Bei Variable ("Lösung" zum ändern des Lösungswertes): '))
+
+                except ValueError:
+
+                    Korrektur_Error = True
+
+                if(Korrektur_Error == False):
+
+                    try:
+
+                        for i in range(Array_Rang + 1):
+
+                            if(Korrektur_Variable == Variablen[i]):
+
+                                Korrektur_Variable_Zahl = i
+
+                        LGS[Korrektur_Zeile][Korrektur_Variable_Zahl] = float(input("Gebe deinen Wert nochmal ein: "))
+
+                    except ValueError or IndexError:
+
+                        Error = True
+                        Status = "Eingabefehler"
+
+                else:
+
+                    print("Es gab einen Fehler bei der Eingabe versuche es erneut.")
+
+            elif(LGS_korrektur == "Ja"):
+
+                Korrektur = True
+
+            else:
+
+                print('\nEingabefehler gebe erneut "Ja" oder "Nein" ein \n')
+            
     print("\n")
 
     ### Rechner:
