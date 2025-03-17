@@ -125,7 +125,6 @@ while True:
     ### Rechner:
 
     # Berechnung der Dreiecksmatrix vom Format:
-
     # (X, X, X | Lösung)
     # (0, X, X | Lösung)
     # (0, 0, X | Lösung)
