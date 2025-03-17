@@ -22,10 +22,39 @@ Korrektur_Zeile = 0
 Korrektur_Variable = "X"
 Korrektur_Variable_Zahl = 0
 Korrektur_Error = False
+Korrektur_Erfolg = False
 
 ### Programm ###
 
 while True:
+    
+    ###Funktion####
+
+    def AusgabeLGS():
+
+    # Funktion zur Darstellung des LGS in Matrix-Schreibweise
+    # "i" steht für die Zeilen und "a" für die Spalten
+    # zusätzlich wird zwischen den Variablen-Spalten ein ";" und der Lösungs-Spalte ein "|" gesetzt  
+       
+        for i in range (Array_Rang):                
+        
+            print("[", end="")
+    
+            for a in range (Array_Rang + 1):
+                
+                if (a == Array_Rang):
+
+                    print("|", LGS[i][a], end="")
+
+                elif (a == Array_Rang - 1):
+
+                    print(LGS[i][a], end=" ")
+
+                else: 
+
+                    print(LGS[i][a], end=" ; ")
+            
+            print("]")
     
     ### Eingabe:
     
@@ -119,9 +148,7 @@ while True:
 
             print("\nHier ist dein eingegebenes LGS: \n")
 
-            for Zeilen in LGS:
-
-                print(Zeilen)
+            AusgabeLGS()
 
             LGS_korrektur = str(input("\nIst das LGS korrekt eingegeben? (Ja/Nein): "))
 
@@ -132,7 +159,7 @@ while True:
                     print("Wo liegt der Fehler? \n")
                     Korrektur_Zeile = int(input("In Zeile: ")) - 1
                     Korrektur_Variable = str(input('Bei Variable ("Lösung" zum ändern des Lösungswertes): '))
-
+                
                 except ValueError:
 
                     Korrektur_Error = True
@@ -147,12 +174,19 @@ while True:
 
                                 Korrektur_Variable_Zahl = i
 
-                        LGS[Korrektur_Zeile][Korrektur_Variable_Zahl] = float(input("Gebe deinen Wert nochmal ein: "))
+                                LGS[Korrektur_Zeile][Korrektur_Variable_Zahl] = float(input("Gebe deinen Wert nochmal ein: "))
+                                Korrektur_Erfolg = True
+
+                            elif((i == Array_Rang) and (Korrektur_Erfolg == False)):
+
+                                print("Die eingegebene Variable ist nicht denfiniert.")
 
                     except ValueError or IndexError:
 
                         Error = True
                         Status = "Eingabefehler"
+                    
+                    Korrektur_Erfolg = False
 
                 else:
 
@@ -258,9 +292,7 @@ while True:
     
         print("Dreiecksmatrix: \n")
 
-        for Zeilen in LGS:
-
-            print(Zeilen)
+        AusgabeLGS()
 
         print("\nStatus:", Status, "\n")
 
@@ -279,3 +311,5 @@ while True:
         print(f"Es gab folgenden Fehler: {Status} \nBitte gebe dein LGS erneut ein \n")
 
 ### Programm Ende ###   
+
+
