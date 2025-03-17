@@ -11,13 +11,13 @@
 
 ### Variablen ###
 
-Buffer_Zeile = [float(0), float(0), float(0), float(0), float(0)]
+Buffer_Zeile = [float(0), float(0), float(0), float(0), float(0)]   #Bufferzeile später zum Tauschen von Zeilen verwendet 
 Status = "OK"
 X1 = 0
 X2 = 0
 X3 = 0
 X4 = 0
-Null_Status = 0
+Null_Status = 0                                                     #Wird 1 wenn an der 1.Stelle einer Zeile eine Null steht
 Fehler_Counter = 0
 Error = False
 
