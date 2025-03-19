@@ -7,7 +7,17 @@
 #####################################################################
 
 # Autoren:   David Binder; Niklas Dreher
-# Stand:     17.03.2025
+# Stand:     19.03.2025
+
+# Dieses Programm kann lineare Gleichungssysteme mit bis zu 8 Variablen mit dem Gauß-Verfahren lösen (Theoretisch gehen auch mehr, aber dann werden meistens die Werte zu groß für das Programm).
+# Die Variablen können frei benannt werden und es sollten nicht zwei Variablen gleich benannt werden, da sonst die Korrektur-Funktion nach der Eingabe nicht richtig funktioniert.
+#
+# Hier ist ein Beispiel-System mit den 4 Variablen A, B, C und D:
+#
+# Zeile 1: 3A  + 4B + 0C + 0D = 3
+# Zeile 2: 8A  + 4B + 1C + 1D = 3
+# Zeile 3: 0A  + 2B + 1C + 0D = 9
+# Zeile 4: 12A + 4B + 1C + 0D = 0
 
 ### Variablen ###
 
@@ -166,6 +176,8 @@ while True:
 
                 if(Korrektur_Error == False):
 
+                    # Suche nach der Stelle der eingegebenen Variable in der Variablen-Liste:
+
                     try:
 
                         for i in range(Array_Rang + 1):
@@ -222,7 +234,7 @@ while True:
 
                 try:
 
-                    for c in range(1, 1 + Array_Rang - a):
+                    for c in range(1, Array_Rang - a):
 
                         if (LGS[a][a] == 0):
 
@@ -304,11 +316,17 @@ while True:
 
                 print(f"{Variablen[i]} = {Loesung[i]}\n")
 
-    # Ausgabe bei Fehler:
+    # Ausgabe bei Fehler / unendlich Lösungen:
 
     else:
         
-        print(f"Es gab folgenden Fehler: {Status} \nBitte gebe dein LGS erneut ein \n")
+        if((Status == "Nullzeile") or (Status == "Nullspalte")):
+
+            print("Dein lineares Gleichungsystem hat unendlich Lösungen\n")
+
+        else:
+
+            print(f"Es gab folgenden Fehler: {Status} \nBitte gebe dein LGS erneut ein \n")
 
 ### Programm Ende ###   
 
