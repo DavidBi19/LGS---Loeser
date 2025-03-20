@@ -10,7 +10,7 @@
 # Stand:     19.03.2025
 
 # Dieses Programm kann lineare Gleichungssysteme mit bis zu 8 Variablen mit dem Gauß-Verfahren lösen (Theoretisch gehen auch mehr, aber dann werden meistens die Werte zu groß für das Programm).
-# Die Variablen können frei benannt werden und es sollten nicht zwei Variablen gleich benannt werden, da sonst die Korrektur-Funktion nach der Eingabe nicht richtig funktioniert.
+# Die Variablen können frei benannt werden, es sollten jedoch nicht zwei Variablen gleich benannt werden, da sonst die Korrektur-Funktion nach der Eingabe nicht richtig funktioniert. 
 #
 # Hier ist ein Beispiel-System mit den 4 Variablen A, B, C und D:
 #
