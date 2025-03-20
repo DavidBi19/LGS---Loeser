@@ -1,0 +1,26 @@
+Hier ist unser Programm zum Lösen eines linearen Gleichungssystems:
+
+
+Das Programm kann theoretisch LGS mit unendlich vielen Variablen lösen. Aber ab ca. 8 Variablen werden die Werte für das Programm zu groß, da nicht gerundet wird.
+
+Das Format des LGS sieht man im Beispiel weiter unten.
+
+Gelöst wird das System mit dem Gauß-Verfahren.
+
+Die Anzahl der Variablen muss am Anfang festgelegt werden.
+Danach können die Variablen benannt werden. (Hierbei sollten nicht zwei Variablen gleich benannt werden)
+
+Nach der Eingabe der Werte können diese nochmals überprüft und falls nötig geändert werden.
+
+Das Programm berechnet dann die Lösung des LGS und gibt diese aus.
+
+
+Hier ist ein Beispiel-System mit den 4 Variablen A, B, C und D:
+
+Zeile 1: 3A  + 4B + 0C + 0D = 3
+Zeile 2: 8A  + 4B + 1C + 1D = 3
+Zeile 3: 0A  + 2B + 1C + 0D = 9
+Zeile 4: 12A + 4B + 1C + 0D = 0
+
+
+Link zum GitHub-repository: https://github.com/DavidBi19/LGS---Loeser.git

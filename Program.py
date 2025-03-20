@@ -7,17 +7,7 @@
 #####################################################################
 
 # Autoren:   David Binder; Niklas Dreher
-# Stand:     19.03.2025
-
-# Dieses Programm kann lineare Gleichungssysteme mit bis zu 8 Variablen mit dem Gauß-Verfahren lösen (Theoretisch gehen auch mehr, aber dann werden meistens die Werte zu groß für das Programm).
-# Die Variablen können frei benannt werden und es sollten nicht zwei Variablen gleich benannt werden, da sonst die Korrektur-Funktion nach der Eingabe nicht richtig funktioniert.
-#
-# Hier ist ein Beispiel-System mit den 4 Variablen A, B, C und D:
-#
-# Zeile 1: 3A  + 4B + 0C + 0D = 3
-# Zeile 2: 8A  + 4B + 1C + 1D = 3
-# Zeile 3: 0A  + 2B + 1C + 0D = 9
-# Zeile 4: 12A + 4B + 1C + 0D = 0
+# Stand:     20.03.2025
 
 ### Variablen ###
 
@@ -38,15 +28,14 @@ Korrektur_Erfolg = False
 
 while True:
     
-    ###Funktion####
+    ### Funktionen ####
 
     def AusgabeLGS():
 
     # Funktion zur Darstellung des LGS in Matrix-Schreibweise
-    # "i" steht für die Zeilen und "a" für die Spalten
     # zusätzlich wird zwischen den Variablen-Spalten ein ";" und der Lösungs-Spalte ein "|" gesetzt  
        
-        for i in range (Array_Rang):                
+        for i in range (Array_Rang):                    # "i" steht für die Zeilen und "a" für die Spalten
         
             print("[", end="")
     
@@ -76,7 +65,7 @@ while True:
 
     try:
 
-        Array_Rang = int(input("Wie viele Variablen hat dein LGS: "))
+        Array_Rang = int(input("\nWie viele Variablen hat dein LGS: "))
 
     except ValueError:
 
@@ -137,7 +126,7 @@ while True:
 
             for i in range(Array_Rang):
 
-                for a in range((Array_Rang + 1)):
+                for a in range((Array_Rang + 1)):           # a steht hier für die aktuelle Spalte und i für die aktuelle Zeile
 
                     print(f"Zeile {i + 1}, {Variablen[a]}:")
                     
@@ -223,7 +212,7 @@ while True:
 
     if(Error == False):
     
-        for a in range(Array_Rang):
+        for a in range(Array_Rang):         # a steht hier für die aktuelle Spalte
 
             # Vertauschung der Zeilen bei Null im ersten Faktor:
             # (0, X, X | Lösung)
@@ -234,7 +223,7 @@ while True:
 
                 try:
 
-                    for c in range(1, Array_Rang - a):
+                    for c in range(1, Array_Rang - a):          # c steht hier für die wievielte Zeile unter der aktuellen Hauptzeile
 
                         if (LGS[a][a] == 0):
 
@@ -253,7 +242,7 @@ while True:
             # (0, X, X | Lösung)
             # (X, X, X | Lösung) usw.
                 
-            for b in range(a, Array_Rang - 1):
+            for b in range(a, Array_Rang - 1):          # b steht hier für die aktuelle Zeile
 
                 if (LGS[b + 1][a] != 0):
 
@@ -265,13 +254,13 @@ while True:
 
                     if ((Buffer_Zeile[a] < 0) and (LGS[b + 1][a] < 0)) or ((Buffer_Zeile[a] > 0) and (LGS[b + 1][a] > 0)):
 
-                        for i in range(Array_Rang + 1):
+                        for i in range(Array_Rang + 1):         # i steht hier für den jeweiligen Wert in der aktuellen Spalte
 
                             LGS[b + 1][i] -= Buffer_Zeile[i]
 
                     elif ((Buffer_Zeile[a] < 0) and (LGS[b + 1][a] > 0)) or ((Buffer_Zeile[a] > 0) and (LGS[b + 1][a] < 0)):
 
-                        for i in range(Array_Rang + 1):
+                        for i in range(Array_Rang + 1):         # i steht hier für den jeweiligen Wert in der aktuellen Spalte
 
                             LGS[b + 1][i] += Buffer_Zeile[i]
 
@@ -281,7 +270,7 @@ while True:
 
         try:
 
-            for i in range((Array_Rang - 1), -1, -1):
+            for i in range((Array_Rang - 1), -1, -1):           # i steht hier für die aktuelle Zeile
 
                 Buffer_Loesung = LGS[i][Array_Rang]
                 
@@ -306,15 +295,11 @@ while True:
 
         AusgabeLGS()
 
-        print("\nStatus:", Status, "\n")
+        print("Dein Ergebnis lautet: \n")
 
-        if Status == "OK":
+        for i in range(Array_Rang):
 
-            print("Dein Ergebnis lautet: \n")
-
-            for i in range(Array_Rang):
-
-                print(f"{Variablen[i]} = {Loesung[i]}\n")
+            print(f"{Variablen[i]} = {Loesung[i]}\n")
 
     # Ausgabe bei Fehler / unendlich Lösungen:
 
@@ -322,12 +307,10 @@ while True:
         
         if((Status == "Nullzeile") or (Status == "Nullspalte")):
 
-            print("Dein lineares Gleichungsystem hat unendlich Lösungen\n")
+            print("Dein lineares Gleichungsystem hat unendlich viele Lösungen\n")
 
         else:
 
             print(f"Es gab folgenden Fehler: {Status} \nBitte gebe dein LGS erneut ein \n")
 
-### Programm Ende ###   
-
-
+### Programm Ende ###
