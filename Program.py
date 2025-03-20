@@ -317,11 +317,11 @@ while loop:
 
             print("Dein lineares Gleichungsystem hat unendlich viele Lösungen\n")
 
-        loop_Abfrage = str(input("Möchtest du ein weiteres LGS berechnen? (Ja/Nein): "))
+            loop_Abfrage = str(input("Möchtest du ein weiteres LGS berechnen? (Ja/Nein): "))
 
-        if(loop_Abfrage == "Nein"):
+            if(loop_Abfrage == "Nein"):
 
-            loop = False
+                loop = False
 
         else:
 
