@@ -23,10 +23,12 @@ Korrektur_Variable = "X"
 Korrektur_Variable_Zahl = 0
 Korrektur_Error = False
 Korrektur_Erfolg = False
+loop = True
+loop_Abfrage = "Ja"
 
 ### Programm ###
 
-while True:
+while loop:
     
     ### Funktionen ####
 
@@ -301,6 +303,12 @@ while True:
 
             print(f"{Variablen[i]} = {Loesung[i]}\n")
 
+        loop_Abfrage = str(input("Möchtest du ein weiteres LGS berechnen? (Ja/Nein): "))
+
+        if(loop_Abfrage == "Nein"):
+
+            loop = False
+
     # Ausgabe bei Fehler / unendlich Lösungen:
 
     else:
@@ -308,6 +316,12 @@ while True:
         if((Status == "Nullzeile") or (Status == "Nullspalte")):
 
             print("Dein lineares Gleichungsystem hat unendlich viele Lösungen\n")
+
+        loop_Abfrage = str(input("Möchtest du ein weiteres LGS berechnen? (Ja/Nein): "))
+
+        if(loop_Abfrage == "Nein"):
+
+            loop = False
 
         else:
 
